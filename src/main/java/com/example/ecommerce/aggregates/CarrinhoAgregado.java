@@ -10,10 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
 
 @Entity
-public class PedidoAgregado {
+public class CarrinhoAgregado {
 
     @Id
-    private Long idPedidooAgregado;
+    private Long idCarrinhoAgregado;
     @Transient
-    private List<ItemPedido> itensPedido = new ArrayList<>();
+    private List<ItemPedido> itens = new ArrayList<>();
 }

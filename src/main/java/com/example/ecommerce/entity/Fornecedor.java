@@ -1,5 +1,14 @@
 package com.example.ecommerce.entity;
 
-public class Fornecedor extends User{
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Fornecedor{
     
+    @Id
+    private Long idFornecedor;
+    @OneToOne
+    private User user;
 }
