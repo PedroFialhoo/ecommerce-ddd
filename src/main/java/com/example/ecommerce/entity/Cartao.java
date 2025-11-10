@@ -15,7 +15,12 @@ import lombok.Setter;
 public class Cartao {
     @Id
     private Long idCartao;
-    
+
+    private String numeroCartao;
+    private String nomeTitular;
+    private String dataValidade;
+    private String cvv;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

@@ -3,21 +3,25 @@ package com.example.ecommerce.entity;
 import java.time.LocalDate;
 
 import com.example.ecommerce.aggregates.PedidoAgregado;
+import com.example.ecommerce.valuableObject.StatusPedido;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pedido {
     // lista itens, cliente , dataCriação , valorTotal, Pagemento , Nota Fiscal , status
     @Id
@@ -28,7 +32,8 @@ public class Pedido {
     private Pagamento pagamento;
     @OneToOne
     private NotaFiscal notaFiscal;
-    private boolean statusPedido;
+    @Enumerated
+    private StatusPedido statusPedido;
 
     @Embedded
     private PedidoAgregado pedidoAgregado;
