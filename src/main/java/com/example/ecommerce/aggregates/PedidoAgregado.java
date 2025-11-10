@@ -5,15 +5,12 @@ import java.util.List;
 
 import com.example.ecommerce.entity.ItemPedido;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
 
-@Entity
+@Embeddable
 public class PedidoAgregado {
 
-    @Id
-    private Long idPedidooAgregado;
-    @Transient
+    @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itensPedido = new ArrayList<>();
 }

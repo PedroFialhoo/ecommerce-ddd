@@ -1,19 +1,20 @@
-package com.example.ecommerce.aggregates;
+    package com.example.ecommerce.aggregates;
 
-import java.util.ArrayList;
-import java.util.List;
+    import java.util.ArrayList;
+    import java.util.List;
 
-import com.example.ecommerce.entity.ItemPedido;
+    import com.example.ecommerce.entity.ItemPedido;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+    import jakarta.persistence.Embeddable;
+    import jakarta.persistence.OneToMany;
+    
+    import lombok.Getter;
+    import lombok.Setter;
 
-@Entity
-public class CarrinhoAgregado {
-
-    @Id
-    private Long idCarrinhoAgregado;
-    @Transient
-    private List<ItemPedido> itens = new ArrayList<>();
-}
+    @Embeddable
+    @Getter
+    @Setter
+    public class CarrinhoAgregado {
+        @OneToMany(mappedBy = "carrinho")
+        private List<ItemPedido> itens = new ArrayList<>();
+    }

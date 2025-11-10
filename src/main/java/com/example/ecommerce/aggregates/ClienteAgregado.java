@@ -5,24 +5,23 @@ import java.util.List;
 
 import com.example.ecommerce.entity.Avaliacao;
 import com.example.ecommerce.entity.Cartao;
-import com.example.ecommerce.entity.Pedido;
 import com.example.ecommerce.entity.Endereco;
+import com.example.ecommerce.entity.Pedido;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
 
-@Entity
+@Embeddable
 public class ClienteAgregado {
-        
-    @Id
-    private Long idClienteAgregado;
-    @Transient
+    @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
-    @Transient
+
+    @OneToMany(mappedBy = "cliente")
     private List<Cartao> cartoes = new ArrayList<>();
-    @Transient
+
+    @OneToMany(mappedBy = "cliente")
     private List<Avaliacao> avaliacoes = new ArrayList<>();
-    @Transient
+
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 }
