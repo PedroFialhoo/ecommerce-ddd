@@ -1,8 +1,7 @@
 package com.example.ecommerce.valuableObject;
 
-public enum StatusPedido {
-    ESPERANDO_PAGAMENTO,
-    EM_PREPARO,
+public enum StatusPagamento {
+    AGUARDANDO,
     CONCLUIDO,
     REEMBOLSADO,
     CANCELADO

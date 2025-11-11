@@ -9,6 +9,6 @@ import com.example.ecommerce.entity.ItemPedido;
 import com.example.ecommerce.entity.Produto;
 
 @Repository
-public interface  ItemPedidoRepository extends JpaRepository<ItemPedido, Long>{
+public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long>{
     Optional<ItemPedido> findByProduto(Produto produto);
 }
