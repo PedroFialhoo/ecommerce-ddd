@@ -1,6 +1,8 @@
 package com.example.ecommerce.services;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +56,11 @@ public class CarrinhoService {
         carrinho.getCarrinhoAgregado().getItens().add(itemPedido);
         carrinho.setValorTotal(itemPedido.getValorUnitario() * quantidade);
         carrinhoRepository.save(carrinho);
+    }
+
+    public void limparCarrinho(Carrinho carrinho){
+        List<ItemPedido> itens = carrinho.getCarrinhoAgregado().getItens();
+        itens.removeIf(ItemPedido::isComprar);
+        carrinhoRepository.save(carrinho); 
     }
 }

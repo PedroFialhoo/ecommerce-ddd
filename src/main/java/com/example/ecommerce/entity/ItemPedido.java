@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -15,6 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ItemPedido {
     // produto, quantidade , valorUnitario, subtotal
     @Id
@@ -35,4 +37,6 @@ public class ItemPedido {
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
     
+    private boolean comprar;
+
 }

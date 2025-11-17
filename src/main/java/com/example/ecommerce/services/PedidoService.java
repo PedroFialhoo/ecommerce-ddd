@@ -18,11 +18,11 @@ public class PedidoService {
     @Autowired
     PedidoRepository pedidoRepository;
 
-    public Pedido criarPedido(Cliente cliente, Carrinho carrinho, List<ItemPedido> itens){
+    public Pedido criarPedido(Cliente cliente, float total, List<ItemPedido> itens){
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setDataPedido(LocalDate.now());
-        pedido.setValorTotal(carrinho.getValorTotal());
+        pedido.setValorTotal(total);
         pedido.setStatusPedido(StatusPedido.ESPERANDO_PAGAMENTO);
         pedido.getPedidoAgregado().setItensPedido(itens);
 

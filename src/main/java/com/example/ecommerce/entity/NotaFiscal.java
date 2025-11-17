@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class NotaFiscal {
     @Id
     private Long idNotaFiscal;
 
+    @OneToOne
     private Pedido pedido;
     private Long numeroNotaFiscal;
     private LocalDate dataEmissao;

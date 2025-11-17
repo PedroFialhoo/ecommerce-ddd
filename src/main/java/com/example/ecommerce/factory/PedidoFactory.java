@@ -1,5 +1,6 @@
 package com.example.ecommerce.factory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.example.ecommerce.entity.Cliente;
 import com.example.ecommerce.entity.ItemPedido;
 import com.example.ecommerce.entity.Pedido;
 import com.example.ecommerce.entity.Produto;
+import com.example.ecommerce.services.CarrinhoService;
 import com.example.ecommerce.services.CartaoService;
 import com.example.ecommerce.services.PedidoService;
 import com.example.ecommerce.services.ProdutoService;
@@ -21,6 +23,9 @@ public class PedidoFactory {
 
     @Autowired
     ProdutoService produtoService;
+
+    @Autowired
+    CarrinhoService carrinhoService;
 
     @Autowired
     PedidoService pedidoService;
@@ -35,20 +40,27 @@ public class PedidoFactory {
                 return false;
             }
         }        
-        List<ItemPedido> itens = carrinho.getCarrinhoAgregado().getItens();
+        List<ItemPedido> itens = new ArrayList<>();
+        float total = 0;
         for (ItemPedido item : itens) {
             Produto produto = item.getProduto();
+            if(!item.isComprar()){
+                return false;
+            }
             if(produto.getQuantidadeEstoque() < item.getQuantidade()){
                 return false;
             }
+            itens.add(item);
+            total += produto.getPreco() * item.getQuantidade();
             produtoService.retirarProduto(produto, item.getQuantidade());            
         }
         
         Pedido pedido = new Pedido();
-        pedido = pedidoService.criarPedido(cliente, carrinho, itens);
+        pedido = pedidoService.criarPedido(cliente, total, itens);
         pedido = pagamentoFactory.realizarPagamento(pedido, cartao, tipoPagamento);
         
         pedidoService.salvarPedido(pedido);
+        carrinhoService.limparCarrinho(carrinho);
 
         return true;
     }
